@@ -1,6 +1,6 @@
 language: csharp
 mono: none
-dotnet: 1.1.0
+dotnet: 1.1.1
 dist: trusty
 install:
  - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
