@@ -1,0 +1,11 @@
+language: csharp
+mono: none
+dotnet: 1.1.0
+dist: trusty
+install:
+ - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+script:
+ - dotnet restore
+ - dotnet build ./RedisMessagingHub/RedisMessagingHub.csproj -c Release
+ - dotnet pack ./RedisMessagingHub/RedisMessagingHub.csproj -c Release -o ./nuget-package
+ - dotnet nuget push ./RedisMessagingHub/nuget-package/RedisMessagingHub.0.1.0.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
