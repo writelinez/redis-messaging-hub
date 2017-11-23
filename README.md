@@ -13,6 +13,9 @@ of a simple TCP protocol.
 
 A diagram showing a typical architecture of the messing system is shown here
 
+![architecture diagram](https://github.com/writelinez/redis-messaging-hub/raw/master/Documentation/howitworks.png "Architecture Diagram")
+
+
 I’m thinking about possibly standing up some shared servers in the future that would allow the use of the messaging system without needing to setup a server. If I get enough requests, I'll consider
 getting something like that going.
 
