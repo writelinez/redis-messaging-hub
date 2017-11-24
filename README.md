@@ -8,10 +8,11 @@ In a typical scenario, the server would be responsible for receiving messages an
 The client application would send and receive message and also have the ability to join and leave different channels.
 
 All message transmissions are piped through channels which are basically Redis subscriptions. When a client joins a channel a subscription is made in Redis and when a client sends
-a message, that message is then published to the desegnated channel. All transmissions done between the client and the server utilize the Web Socket interface which sits on top
+a message, that message is then published to the designated channel. All transmissions done between the client and the server utilize the Web Socket interface which sits on top
 of a simple TCP protocol.
 
-A diagram showing a typical architecture of the messing system is shown here
+A diagram showing a typical architecture of the messaging system is shown here
+
 
 ![architecture diagram](https://github.com/writelinez/redis-messaging-hub/raw/master/Documentation/howitworks.png "Architecture Diagram")
 
@@ -29,10 +30,11 @@ getting something like that going.
 #### -Server Installation-
 Add Nuget package to your dotnetcore project : `Install-Package RedisMessagingHub -Version 0.1.0`
 
-After installing the Nuget Package, you will need to create a hub class. The hub class allows you to intersect the client messages to do futher processing. This is also where you would keep track of your users and gate authentication.
+After installing the Nuget Package, you will need to create a hub class. The hub class allows you to intersect the client messages to do further processing. This is also where you would keep track of your users and gate authentication.
 The hub class will need to implement the IRedisMessageHub interface. The methods do not need to be utilized but the method stubs will need to be present. An abstract base class is also provided that already implements the IRedisMessageHub. Inheriting this class will provide an easier way to implement the Message hub.
 
 You can use the code snippet below as a baseline.
+
 ```C#
 using System.Threading.Tasks;
 using RedisMessagingHub.Entities;
