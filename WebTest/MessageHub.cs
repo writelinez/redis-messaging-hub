@@ -20,6 +20,23 @@ namespace WebTest
 
         public override async Task<bool> OnAuthenticate(Message authenticationToken)
         {
+            //Make sure the message type is for authentication, otherwise we kick the user out.
+            if (authenticationToken.Type == RedisMessagingHub.Enums.MessageType.AUTHENTICATE)
+            {
+                //We base64 encode the auth credentials on the client
+                //so we will need to decode them here in our example.
+                string rawData = Convert.ToString(authenticationToken.Data);
+                byte[] byteData = Convert.FromBase64String(rawData);
+                string decodedData = System.Text.Encoding.UTF8.GetString(byteData);
+
+                //If the password matches, then we can let them through, otherwise we kick them.
+                if (!decodedData.Equals("MyVeryCoolPassword"))
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
             return await base.OnAuthenticate(authenticationToken);
         }
 

@@ -170,6 +170,57 @@ var hub = new RedisMessageHub({
             url: 'localhost:53308'
         });
 ```
+
+## Usage
+
+#### Server
+When you have your hub all setup and ready, you can start hooking on the functions provided to perform things such as authentication and to keep track of your users.
+
+Messages passed to the hub will contain the following information:
+```C#
+int Id //[Reserved for future use]
+MessageType Type //[Type of message]
+string Channel //[Channel the message will be sent to]
+object Data //[The payload. This is where your message data would be.]
+DateTime Date //[The time your message was sent or received.]
+```
+
+With that information, we can write some simple logic in the OnAuthenticate function to authenticate our user. We will use hard coded values for now, but you will ultimatly want to use real authentication.
+
+```C#
+public class MessageHub : RedisMessageHubBase
+    {
+        public override bool Authenticate => true;
+
+        public override async Task OnConnectionEstablished(RedisUserInstance redisClient)
+        {
+            await base.OnConnectionEstablished(redisClient);
+        }
+
+        public override async Task<bool> OnAuthenticate(Message authenticationToken)
+        {
+            //Make sure the message type is for authentication, otherwise we kick the user out.
+            if (authenticationToken.Type == RedisMessagingHub.Enums.MessageType.AUTHENTICATE)
+            {
+                //We base64 encode the auth credentials on the client
+                //so we will need to decode them here in our example.
+                string rawData = Convert.ToString(authenticationToken.Data);
+                byte[] byteData = Convert.FromBase64String(rawData);
+                string decodedData = System.Text.Encoding.UTF8.GetString(byteData);
+
+                //If the password matches, then we can let them through, otherwise we kick them.
+                if (!decodedData.Equals("MyVeryCoolPassword"))
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+            return await base.OnAuthenticate(authenticationToken);
+        }
+        ...
+```
+
 ## Contributing
 
 We would love to get some help on this project. If you wish to contribute to this project, you can either submit your PR's for review or you can contact Chris at chrisbardsley@athosserver.com.

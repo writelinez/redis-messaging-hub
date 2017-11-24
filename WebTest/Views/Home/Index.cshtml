@@ -114,8 +114,9 @@
         //----------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------
-        var hub = new RedisMessageHub({
-            url: 'localhost:53308'
+        //53308
+	    var hub = new RedisMessageHub({
+            url: 'localhost:5000'
         });
         //----------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------
@@ -199,7 +200,7 @@
             if (hub.state() == hub.HUB_STATE.DISCONNECTED) {
                 //connect
                 hub.connect({
-                    authData: 'YWZzbGprc2Fka2wzNzNpamtza2xhc2tsamRzZnNhZA==',
+                    authData: 'TXlWZXJ5Q29vbFBhc3N3b3Jk',
                     onConnected: onHubConnected,
                     onClosed: onHubClosed,
                     onMessage: onHubMessage,
