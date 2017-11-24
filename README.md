@@ -151,66 +151,30 @@ namespace MyProject.Hubs
 
 #### -Client Installation-
 
-```
-Give the example
-```
+The client script wraps Web Sockets under the hood and provides the functionality that is necessary to communicate directly with the server. The client script is currently located in the RedisMessagingHub project under the ClientScript folder. There are both minified and unminified versions. There are plans to add the script as a NPM package in the future, but for now you will need to add the script to the page the old fashioned way.
 
-And repeat
 
-```
-until finished
-```
+Copy the redis-message-hub.js or the redis-message-hub.min.js file to your site script directory.
 
-End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+Add the script in a script tag at the bottom of the html page where you want to use it.
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```Html
+<script src="~/js/redis-message-hub.min.js"></script>
 ```
 
-### And coding style tests
+You can then access the message hub script object similar to what is show below. The url parameter passed in will point to the server address where you installed the Redis Message Hub on the server.
 
-Explain what these tests test and why
-
+```Javascript
+var hub = new RedisMessageHub({
+            url: 'localhost:53308'
+        });
 ```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-
-
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+We would love to get some help on this project. If you wish to contribute to this project, you can either submit your PR's for review or you can contact Chris at chrisbardsley@athosserver.com.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
