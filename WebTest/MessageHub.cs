@@ -17,9 +17,9 @@ namespace WebTest
     {
         public override bool Authenticate => true;
 
-        public override Task OnConnectionEstablished(RedisUserInstance redisClient)
+        public override async Task OnConnectionEstablished(RedisUserInstance redisClient)
         {
-            return base.OnConnectionEstablished(redisClient);
+            await base.OnConnectionEstablished(redisClient);
         }
 
         public override async Task<bool> OnAuthenticate(Message authenticationToken)
@@ -36,34 +36,34 @@ namespace WebTest
             return await base.OnAuthenticate(authenticationToken);
         }
 
-        public override Task OnIncomingMessage(Message message)
+        public override async Task OnIncomingMessage(Message message)
         {
-            return base.OnIncomingMessage(message);
+            await base.OnIncomingMessage(message);
         }
 
-        public override Task OnChannelSubscribed(Message message)
+        public override async Task OnChannelSubscribed(Message message)
         {
-            return base.OnChannelSubscribed(message);
+            await base.OnChannelSubscribed(message);
         }
 
-        public override Task OnChannelUnsubscribed(Message message)
+        public override async Task OnChannelUnsubscribed(Message message)
         {
-            return base.OnChannelUnsubscribed(message);
+            await base.OnChannelUnsubscribed(message);
         }
 
-        public override Task OnPing(Message message)
+        public override async Task OnPing(Message message)
         {
-            return base.OnPing(message);
+            await base.OnPing(message);
         }
 
-        public override Task OnPong(Message message)
+        public override async Task OnPong(Message message)
         {
-            return base.OnPong(message);
+            await base.OnPong(message);
         }
 
-        public override Task OnConnectionClosed(RedisUserInstance connection)
+        public override async Task OnConnectionClosed(RedisUserInstance connection)
         {
-            return base.OnConnectionClosed(connection);
+            await base.OnConnectionClosed(connection);
         }
     }
 }
