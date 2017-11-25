@@ -115,7 +115,7 @@
         //----------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------
         var hub = new RedisMessageHub({
-            url: 'localhost:53308'
+            url: 'localhost:53308' //http://localhost:50742  53308
         });
         //----------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------
@@ -199,7 +199,7 @@
             if (hub.state() == hub.HUB_STATE.DISCONNECTED) {
                 //connect
                 hub.connect({
-                    authData: 'YWZzbGprc2Fka2wzNzNpamtza2xhc2tsamRzZnNhZA==',
+                    authData: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MiIsIm5hbWUiOiJUZXN0Rmlyc3RuYW1lIFRlc3RMYXN0bmFtZSIsInJvbGUiOiI0IiwiYXVkIjpbImFkbWluIiwicmVzb3VyY2Vfc2VydmVyIl0sInRva2VuX3VzYWdlIjoiYWNjZXNzX3Rva2VuIiwianRpIjoiZWJmZDdhMjEtYmY5My00ZjgxLWExMWUtNDNjZWM4N2EzMTdkIiwic2NvcGUiOlsib3BlbmlkIiwiZW1haWwiLCJvZmZsaW5lX2FjY2VzcyIsInJvbGVzIl0sIm5iZiI6MTUxMTU2NzY4NSwiZXhwIjoxNTExNTk2NDg1LCJpYXQiOjE1MTE1Njc2ODUsImlzcyI6Imh0dHA6Ly93d3cudGF0ZXNhdXRvbW90aXZlLmNvbS8ifQ.REnzNtzurJFpTiYENkaHfD3_5gAV1xGK4JdMxD-U4SA',
                     onConnected: onHubConnected,
                     onClosed: onHubClosed,
                     onMessage: onHubMessage,
