@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using RedisMessagingHub.Entities;
@@ -10,6 +11,8 @@ namespace RedisMessagingHub.Contracts
     public abstract class RedisMessageHubBase : IRedisMessageHub
     {
         public virtual bool Authenticate => false;
+
+        public WebSocket Socket { get; set; }
 
         public virtual async Task<bool> OnAuthenticate(Message authenticationToken)
         {

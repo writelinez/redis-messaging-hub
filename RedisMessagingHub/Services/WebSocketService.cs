@@ -35,6 +35,7 @@ namespace RedisMessagingHub.Services
         public async Task StartSocketListener(HttpContext context)
         {
             WebSocket socket = await context.WebSockets.AcceptWebSocketAsync();
+            _hub.Socket = socket;
 
             try
             {
@@ -45,7 +46,7 @@ namespace RedisMessagingHub.Services
                 await _hub.OnConnectionEstablished(redisUserInstance);
 
                 if ((!_hub.Authenticate) || (_hub.Authenticate && (await _hub.OnAuthenticate(await WaitForAuthenticationMessage(socket)))))
-                {
+                {                   
                     Task.WaitAny
                             (
                                 MessageInputHandler(socket),

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using RedisMessagingHub.Entities;
 using RedisMessagingHub.Services;
 using RedisMessagingHub.Contracts;
+using RedisMessagingHub.Enums;
+using Newtonsoft.Json;
+using System.Text;
+using System.Threading;
 
 namespace WebTest
 {
@@ -20,6 +24,15 @@ namespace WebTest
 
         public override async Task<bool> OnAuthenticate(Message authenticationToken)
         {
+            Message resp = new Message();
+            resp.Data = "Authentication Complete.";
+            resp.Date = DateTime.Now;
+            resp.Type = MessageType.MESSAGE;
+
+            byte[] dta = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(resp));
+
+            await Socket.SendAsync(new ArraySegment<byte>(dta), System.Net.WebSockets.WebSocketMessageType.Text, true, CancellationToken.None);
+
             return await base.OnAuthenticate(authenticationToken);
         }
 
