@@ -10,5 +10,5 @@ install:
 script:
  - dotnet restore
  - dotnet build ./RedisMessagingHub/RedisMessagingHub.csproj -c Release
- - dotnet pack ./RedisMessagingHub/RedisMessagingHub.csproj -c Release -o ./nuget-package
- - dotnet nuget push ./RedisMessagingHub/nuget-package/RedisMessagingHub.0.1.2.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
+ - dotnet pack ./RedisMessagingHub/RedisMessagingHub.csproj -c Release -o ./nuget-package /p:Version=0.1.$TRAVIS_BUILD_NUMBER
+ - dotnet nuget push ./RedisMessagingHub/nuget-package/RedisMessagingHub.0.1.$TRAVIS_BUILD_NUMBER.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
